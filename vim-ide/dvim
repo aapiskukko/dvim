@@ -1,0 +1,60 @@
+#!/bin/bash
+
+NAME="dvim"
+PREFIX="/_"
+VIM_ARGS=""
+CD_PATH=$PREFIX$PWD
+
+start_container()
+{
+    X_COOKIE="$HOME/.Xauthority"
+    MOUNTS=""
+    MOUNTS+="-v $HOME/.dvim/after:/root/.vim/after "
+    MOUNTS+="-v $HOME/.dvim/ftplugin:/root/.vim/ftplugin "
+    MOUNTS+="-v $HOME/.dvim/UltiSnips:/root/.vim/UltiSnips "
+    MOUNTS+="-v $HOME/.dvim/undo:/root/.vim/undo "
+    MOUNTS+="-v $HOME/.dvimrc:/root/.vimrc "
+    MOUNTS+="-v /:$PREFIX "
+
+    if [ -z $VIM_IMG ]; then
+        VIM_IMG="vim-ide"
+    fi
+
+    if [ -f $X_COOKIE ]; then
+        MOUNTS+="-v $X_COOKIE:/root/.Xauthority "
+    fi
+
+    docker run                          \
+        --tty                           \
+        --detach                        \
+        --env DISPLAY                   \
+    	--env COLUMNS=$(tput cols)	\
+    	--env LINES=$(tput lines)   	\
+        $MOUNTS                         \
+        --env "CD_PATH=$PREFIX/$PWD"    \
+        --net=host                      \
+        --name $NAME                    \
+        --rm                            \
+        $VIM_IMG sh
+}
+
+if [ ! "$(docker ps -a -q --filter="name=$NAME")" ]; then
+    start_container
+fi
+
+for ITEM in $@; do
+    if [[ "$ITEM" == "-"* ]] || [[ "$ITEM" == "+"* ]]; then
+        VIM_ARG=$ITEM
+    else
+        VIM_ARG=$PREFIX$(readlink -f $ITEM||greadlink -f $ITEM)
+    fi
+    VIM_ARGS+="$VIM_ARG "
+done
+
+docker exec                                         \
+    --env COLUMNS=$(tput cols)			    \
+    --env LINES=$(tput lines)   		    \
+    --interactive                                   \
+    --tty                                           \
+    --env "CD_PATH=$CD_PATH"                        \
+    $NAME bash -ic "vim $VIM_ARGS"
