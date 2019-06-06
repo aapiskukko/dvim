@@ -81,6 +81,7 @@ RUN \
 RUN mkdir -p /root/ctags/proj /root/.config
 COPY bashrc /root/.bashrc
 COPY pycodestyle /root/.config/pycodestyle
+COPY coc-settings.json /root/.vim/coc-settings.json
 RUN \
     cd /root/.vim/pack/syntax/start/coc.nvim \
     && ./install.sh

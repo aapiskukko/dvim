@@ -7,7 +7,7 @@ OS=$(shell uname)
 
 default: build
 build:
-	docker build -t $(NAME) .
+	docker build --no-cache -t $(NAME) .
 install:
 	mkdir -p $(UNDO_DIR)
 	mkdir -p $(FTPLUGIN_DIR)
