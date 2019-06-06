@@ -1,0 +1,300 @@
+" ########## VIM FUNCTIONS ##########
+
+function! NumberToggle()
+    if (&relativenumber == 1)
+        set norelativenumber
+    else
+        set relativenumber
+    endif
+endfunction
+
+" Trim whitespaces from the current file
+function! TrimWhiteSpace()
+    %s/\s\+$//e
+endfunction
+
+" Move to next item in popup window
+inoremap <expr> <C-@> pumvisible() ? "\<C-n>" : "\<C-@>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+
+" ########## VIM SETTINGS ##########
+
+" Go to folder whrere Docker Vim was started in host
+cd $CD_PATH
+
+" Create access to help
+silent! helptags ALL
+
+" Set fuzzy finder settings path
+set rtp+=/root/.fzf
+
+" Syntax highlighting enabled
+syntax on
+
+" Enable file type detection
+filetype plugin indent on
+
+" Set number
+set number
+
+" Set row numbers visible.
+" If number is set absolute number is sohwn for the current line.
+set relativenumber
+
+" Use tab key for command-line completion
+set wildmenu
+
+" Use 4 spaces in insert mode when pressing tab key
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+set autoindent
+set cindent
+
+" Use system clipboard by default
+set clipboard=unnamed
+
+" Leader key is space
+let mapleader = "\<Space>"
+
+" Don't create swapfile
+set noswapfile
+
+" No packup
+set nobackup
+
+" Show matching bracket when text indicator is over them
+set showmatch
+
+" Set encoding to UTF-8
+set encoding=utf-8
+
+" Cursor distance from the edge when scrolling
+set scrolloff=5
+
+" Don't break words if line is wrapped
+set linebreak
+
+" Split settings.
+set splitbelow
+set splitright
+
+" Ignore case of normal letters in search. Needed for using smartcase
+" functionality
+set ignorecase
+
+" Set smart case-sensitive. That is, search case-insensitive with only lowcase
+" characters and if uppercase characters included, search case sensitive.
+set smartcase
+
+" Make backspace to work properly. Needed after installing Ubuntu 16.04 LTS
+set backspace=2
+
+" Set red background for chars after 100 column
+autocmd FileType cpp match ErrorMsg '\%>99v.\+'
+
+" Resize splits when Vim is resized.
+autocmd VimResized * :wincmd =
+
+" Highlight search results
+set hlsearch
+
+" Automatically move to search result
+set incsearch
+
+" Set persistent undo. With this changes can be undoed
+" also after saving changes to file and exiting Vim.
+set undofile
+set undodir=~/.vim/undo
+
+" Only show cursorline in the current window and in normal mode.
+augroup cline
+    au!
+    au WinLeave * set nocursorline
+    au WinEnter * set cursorline
+    au InsertEnter * set nocursorline
+    au InsertLeave * set cursorline
+augroup END
+
+" Set filetype for .conf files
+autocmd BufRead,BufNewFile *.conf set syntax=sh
+
+" Open quickfix windows below other windows
+autocmd FileType qf wincmd J
+
+" Do always global substitution. No need for /g
+set gdefault
+
+" Wrap lines with indentation
+set breakindent
+
+" Automatically save file on different situations
+set autowriteall
+
+" Set tags path
+set tags+=/root/ctags/*/tags
+
+" Save c++ tags after buffer is written
+autocmd BufWritepost *.?pp :call system("ctags -R -f /root/ctags/proj/tags --tag-relative=never --c++-kinds=+p --fields=+iaS --extras=+q --language-force=C++ &")
+
+" Save Python tags after buffer is written
+autocmd BufWritepost *.py :call system("ctags -R -f /root/ctags/proj/tags --tag-relative=never --extras=+f &")
+
+" Highlight Python self keyword
+augroup PythonCustomization
+  " highlight python self, when followed by a comma, a period or a parenth
+   :autocmd FileType python syn match pythonStatement "\(\W\|^\)\@<=self\([\.,)]\)\@="
+augroup END
+
+" ########## VIM KEY MAPPINGS ##########
+
+" Toggle line number relativity
+nnoremap <C-n> :call NumberToggle()<CR>
+
+" Simplified way of moving between splits
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+
+" Add semicolon to end of the line
+nnoremap <leader>; mqA;<Esc>`q
+
+" Enter newline in normal mode
+nnoremap <C-G> mqo<Esc>`q
+
+" Shorter way of returning to normal mode from insert mode
+inoremap jk <Esc>
+
+" Y yanks until EOL, more like D and C
+" yy still yanks the whole line
+nnoremap Y y$
+
+" U as a more sensible redo
+nnoremap U <c-r>
+
+" [S]plit line (sister to [J]oin lines)
+nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>
+
+" automatically jump to the end of pasted text
+" useful for pasting multi-lines of text
+nnoremap p p`]
+
+" Quicker way to jump to next intem in location list.
+" This is used mainly to jump to next error detected by
+" YouCompleteMe.
+nnoremap <leader>n :lne<cr>
+nnoremap <leader>p :lp<cr>
+
+" Don't care if line is wrapped or not
+nnoremap k gk
+nnoremap j gj
+
+" Close buffer without closing split
+command! Bd bp\|bd\#
+
+" When searching forward with / and searching backwards with ?
+" always use n to search continue searching forward and N
+" to continue searching backwards
+nnoremap <expr>n 'Nn'[v:searchforward]
+nnoremap <expr>N 'nN'[v:searchforward]
+
+" Reset hlsearch highlighting
+nnoremap <BS> :nohlsearch<CR>
+
+" Search visually selected text
+vnoremap // y/<C-R>"<CR>
+
+" More simple way of saving file
+nnoremap <C-s> :write<CR>
+
+" Trim whitespaces when saving file
+autocmd FileWritePre * :call TrimWhiteSpace()
+autocmd FileAppendPre * :call TrimWhiteSpace()
+autocmd FilterWritePre * :call TrimWhiteSpace()
+autocmd BufWritePre * :call TrimWhiteSpace()
+autocmd InsertLeave * :call TrimWhiteSpace()
+
+" Easier way to save with ctrl+s
+noremap <C-s> :write<CR>
+
+" In insert mode, skip one character
+inoremap <S-Tab> <Right>
+
+" Map tag opening for å
+map <silent> å <C-]>
+
+nnoremap ä 2<C-]>
+
+" Show next matched string at the center if screen
+nnoremap n nzz
+nnoremap N Nzz
+
+" ########## PLUGIN SETTINGS AND KEY BINDINGS ##########
+
+" ALE settings
+"let g:ale_sign_column_always = 0
+"let g:ale_sign_error = "❱❱"
+"let g:ale_sign_warning = "❱❱"
+"let g:ale_lint_on_text_changed = 'normal'
+"let g:ale_lint_on_insert_leave = 1
+"let g:ale_linters = {"cpp": ["clang"], "python": ["pyls"], "javascript": ["eslint"]}
+"let g:ale_cpp_clang_options = '-std=c++11 -Wall'
+"let g:ale_python_pyls_use_global = 1
+"nmap <silent> <leader>k <Plug>(ale_previous_wrap)
+"nmap <silent> <leader>j <Plug>(ale_next_wrap)
+
+" Jellybeans theme settings
+set background=dark
+colorscheme jellybeans
+
+" Airline settings
+" Show Vim Airline status bar all the time.
+" By default, it is showed only in split screen.
+set laststatus=2
+" Use Powerline fonts for Airline.
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#whitespace#enabled = 0
+" Disable file format and encoding part
+let g:airline_section_z = '%{g:airline_symbols.linenr}%#__accent_bold#%5l%#__restore__#:%3v'
+let g:airline_section_y = ''
+
+" Ultisnips settings
+let g:UltiSnipsEditSplit="vertical"
+
+" Fuzzy search settings
+nnoremap gb <Esc>:Files<CR>
+nnoremap bg <Esc>:BTags<CR>
+nnoremap bf <Esc>:Ag<CR>
+nnoremap gn <Esc>:Buffers<CR>
+
+" A.vim settings
+nnoremap <leader>s :A<CR>
+autocmd VimEnter * iunmap <leader>ih
+autocmd VimEnter * iunmap <leader>is
+autocmd VimEnter * iunmap <leader>ihn
+
+" Coc settings
+
+
+" Asyncomplete settings
+"autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+"" Use clangd language server if installed
+"if executable('clangd')
+    "au User lsp_setup call lsp#register_server({
+        "\ 'name': 'clangd',
+        "\ 'cmd': {server_info->['clangd']},
+        "\ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+        "\ })
+"endif
+"if executable('pyls')
+    "au User lsp_setup call lsp#register_server({
+        "\ 'name': 'pyls',
+        "\ 'cmd': {server_info->['pyls', '-v', '-v', '--log-file', '/var/log/pyls.log']},
+        "\ 'whitelist': ['python'],
+        "\ 'workspace_config': {'pyls': {'plugins': {'rope_completion': {'enabled': v:true}}}}
+        "\ })
+"endif
+"let g:asyncomplete_smart_completion = 0
+"let g:asyncomplete_auto_popup = 1
+"imap <c-space> <Plug>(asyncomplete_force_refresh)
