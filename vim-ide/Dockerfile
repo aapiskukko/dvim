@@ -11,6 +11,9 @@ RUN \
         autoconf \
         build-base \
         pkgconfig \
+        python3-dev \
+        gcc \
+        musl-dev \
     && apk add --no-cache \
         python \
         python3 \
@@ -21,6 +24,7 @@ RUN \
         nodejs \
         yarn \
         the_silver_searcher \
+    && apk upgrade musl \
     && pip install --upgrade --no-cache-dir \
         pip \
         six \
@@ -32,6 +36,17 @@ RUN \
         rope \
         python-language-server \
         requests \
+    && pip3 install --upgrade --no-cache-dir \
+        pip \
+        six \
+        jedi \
+        yapf \
+        pycodestyle \
+        python-language-server \
+        rope \
+        pylint \
+        requests \
+        gevent \
     # Install fzf
     && git clone https://github.com/junegunn/fzf.git /root/.fzf \
     && /root/.fzf/install \
@@ -71,6 +86,9 @@ RUN \
         autoconf \
         automake \
         pkgconfig \
+        gcc \
+        musl-dev \
+        python3-dev \
     # Remove unused files
     && rm -rf \
         /var/cache/apk/* \
