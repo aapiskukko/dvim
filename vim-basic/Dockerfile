@@ -1,4 +1,4 @@
-From alpine:3.8
+From alpine:latest
 MAINTAINER Aatu Koivisto <aatukoivi@gmail.com>
 
 RUN \

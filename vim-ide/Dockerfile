@@ -3,9 +3,9 @@ MAINTAINER Aatu Koivisto <aatukoivi@gmail.com>
 
 RUN \
     # Add edge repository
-    echo http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories \
+    #echo http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories \
     # Download and install required install deps
-    && apk add --no-cache --update \
+    apk add --no-cache --update \
         git \
         automake \
         autoconf \
