@@ -13,7 +13,10 @@ start_container()
     MOUNTS+="-v $HOME/.dvim/ftplugin:/root/.vim/ftplugin "
     MOUNTS+="-v $HOME/.dvim/UltiSnips:/root/.vim/UltiSnips "
     MOUNTS+="-v $HOME/.dvim/undo:/root/.vim/undo "
-    MOUNTS+="-v $HOME/.dvimrc:/root/.vimrc "
+    MOUNTS+="-v $HOME/.dvim/coc-settings.json:/root/.vim/coc-settings.json "
+    MOUNTS+="-v $HOME/.dvim/pylintrc:/etc/pylintrc "
+    MOUNTS+="-v $HOME/.dvim/pycodestyle:/root/.config/pycodestyle "
+    MOUNTS+="-v $HOME/.dvim/dvimrc:/root/.vimrc "
     MOUNTS+="-v /:$PREFIX "
 
     if [ -z $VIM_IMG ]; then

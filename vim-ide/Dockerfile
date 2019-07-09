@@ -3,9 +3,9 @@ MAINTAINER Aatu Koivisto <aatukoivi@gmail.com>
 
 RUN \
     # Add edge repository
-    #echo http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories \
+    echo http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories \
     # Download and install required install deps
-    apk add --no-cache --update \
+    && apk add --no-cache --update \
         git \
         automake \
         autoconf \
@@ -15,8 +15,6 @@ RUN \
         gcc \
         musl-dev \
     && apk add --no-cache \
-        python \
-        python3 \
         py-pip \
         bash \
         curl \
@@ -25,21 +23,10 @@ RUN \
         yarn \
         the_silver_searcher \
     && apk upgrade musl \
-    && pip install --upgrade --no-cache-dir \
-        pip \
-        six \
-        setuptools \
-        jedi \
-        yapf \
-        pylint \
-        pycodestyle \
-        rope \
-        python-language-server \
-        requests \
     && pip3 install --upgrade --no-cache-dir \
         pip \
         six \
-        jedi \
+        jedi==0.13.3 \
         yapf \
         pycodestyle \
         python-language-server \
@@ -62,6 +49,7 @@ RUN \
     && cd /root/.vim/pack/syntax/start \
     && git clone https://github.com/andymass/vim-matchup.git \
     && git clone https://github.com/neoclide/coc.nvim.git \
+    && git clone https://github.com/w0rp/ale.git \
     # Install outfit related plugins
     && mkdir -p /root/.vim/pack/looks/start \
     && cd /root/.vim/pack/looks/start \
@@ -88,7 +76,6 @@ RUN \
         pkgconfig \
         gcc \
         musl-dev \
-        python3-dev \
     # Remove unused files
     && rm -rf \
         /var/cache/apk/* \
@@ -97,9 +84,7 @@ RUN \
         /tmp/*
 
 RUN mkdir -p /root/ctags/proj /root/.config
-COPY bashrc /root/.bashrc
-COPY pycodestyle /root/.config/pycodestyle
-COPY coc-settings.json /root/.vim/coc-settings.json
+COPY configs/bashrc /root/.bashrc
 RUN \
     cd /root/.vim/pack/syntax/start/coc.nvim \
     && ./install.sh
