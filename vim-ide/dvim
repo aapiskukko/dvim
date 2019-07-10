@@ -54,10 +54,10 @@ for ITEM in $@; do
     VIM_ARGS+="$VIM_ARG "
 done
 
-docker exec                                         \
-    --env COLUMNS=$(tput cols)			    \
-    --env LINES=$(tput lines)   		    \
-    --interactive                                   \
-    --tty                                           \
-    --env "CD_PATH=$CD_PATH"                        \
+docker exec                                 \
+    --env COLUMNS=$(tput cols)		    \
+    --env LINES=$(tput lines)   	    \
+    --interactive                           \
+    --tty                                   \
+    --env "CD_PATH=$CD_PATH"                \
     $NAME bash -ic "vim $VIM_ARGS"
