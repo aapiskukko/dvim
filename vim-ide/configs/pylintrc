@@ -141,7 +141,8 @@ disable=print-statement,
         comprehension-escape,
         missing-docstring,
         useless-object-inheritance,
-        no-else-return
+        no-else-return,
+        import-error
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
@@ -340,17 +341,20 @@ const-naming-style=UPPER_CASE
 docstring-min-length=-1
 
 # Naming style matching correct function names.
-function-naming-style=any
+function-naming-style=snake_case
 
 # Regular expression matching correct function names. Overrides function-
 # naming-style.
-#function-rgx=
+function-rgx=[a-z_][a-zA-Z0-9_]{1,30}$
 
 # Good variable names which should always be accepted, separated by a comma.
 good-names=i,
            j,
            k,
            ex,
+           log,
+           install_requires,
+           tests_require,
            Run,
            _
 
@@ -365,7 +369,7 @@ inlinevar-naming-style=any
 #inlinevar-rgx=
 
 # Naming style matching correct method names.
-method-naming-style=any
+method-naming-style=snake_case
 
 # Regular expression matching correct method names. Overrides method-naming-
 # style.
@@ -501,7 +505,7 @@ max-parents=7
 max-public-methods=20
 
 # Maximum number of return / yield for function / method body.
-max-returns=6
+max-returns=30
 
 # Maximum number of statements in function / method body.
 max-statements=50

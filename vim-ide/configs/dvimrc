@@ -273,30 +273,3 @@ nnoremap <leader>s :A<CR>
 autocmd VimEnter * iunmap <leader>ih
 autocmd VimEnter * iunmap <leader>is
 autocmd VimEnter * iunmap <leader>ihn
-
-" Coc settings
-"nmap <silent> <leader>k <Plug>(coc-diagnostic-next)
-"nmap <silent> <leader>j <Plug>(coc-diagnostic-prev)
-
-
-" Asyncomplete settings
-"autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-"" Use clangd language server if installed
-"if executable('clangd')
-    "au User lsp_setup call lsp#register_server({
-        "\ 'name': 'clangd',
-        "\ 'cmd': {server_info->['clangd']},
-        "\ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
-        "\ })
-"endif
-"if executable('pyls')
-    "au User lsp_setup call lsp#register_server({
-        "\ 'name': 'pyls',
-        "\ 'cmd': {server_info->['pyls', '-v', '-v', '--log-file', '/var/log/pyls.log']},
-        "\ 'whitelist': ['python'],
-        "\ 'workspace_config': {'pyls': {'plugins': {'rope_completion': {'enabled': v:true}}}}
-        "\ })
-"endif
-"let g:asyncomplete_smart_completion = 0
-"let g:asyncomplete_auto_popup = 1
-"imap <c-space> <Plug>(asyncomplete_force_refresh)
