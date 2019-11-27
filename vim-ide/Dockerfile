@@ -26,7 +26,7 @@ RUN \
     && pip3 install --upgrade --no-cache-dir \
         pip \
         six \
-        jedi==0.13.3 \
+        jedi \
         yapf \
         pycodestyle \
         python-language-server \
@@ -62,7 +62,7 @@ RUN \
     && cd /root/.vim/pack/util/start \
     && git clone https://github.com/junegunn/fzf.vim.git \
     && git clone https://github.com/scrooloose/nerdcommenter.git \
-    && git clone https://github.com/SirVer/ultisnips.git \
+    #&& git clone https://github.com/SirVer/ultisnips.git \
     && git clone https://github.com/tpope/vim-obsession.git \
     && git clone https://github.com/tpope/vim-surround.git \
     && git clone https://github.com/mjbrownie/swapit.git \
@@ -91,4 +91,4 @@ RUN \
 RUN \
     mkdir -p /root/.config/coc/extensions \
     && cd /root/.config/coc/extensions \
-    && yarn add coc-python coc-tsserver
+    && yarn add coc-python coc-tsserver coc-json

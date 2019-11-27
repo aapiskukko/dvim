@@ -22,6 +22,7 @@ start_container()
     if [ -z $VIM_IMG ]; then
         VIM_IMG="vim-ide"
     fi
+    VIM_IMG="vim-ide"
 
     if [ -f $X_COOKIE ]; then
         MOUNTS+="-v $X_COOKIE:/root/.Xauthority "
