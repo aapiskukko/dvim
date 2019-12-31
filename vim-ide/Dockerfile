@@ -1,4 +1,4 @@
-From vim-basic:latest
+FROM vim-basic:latest
 MAINTAINER Aatu Koivisto <aatukoivi@gmail.com>
 
 RUN \
