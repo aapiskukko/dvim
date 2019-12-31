@@ -21,6 +21,7 @@ RUN \
         libxml2-utils \
         nodejs \
         yarn \
+        npm \
         the_silver_searcher \
     && apk upgrade musl \
     && pip3 install --upgrade --no-cache-dir \
@@ -48,7 +49,6 @@ RUN \
     && mkdir -p /root/.vim/pack/syntax/start \
     && cd /root/.vim/pack/syntax/start \
     && git clone https://github.com/andymass/vim-matchup.git \
-    && git clone https://github.com/neoclide/coc.nvim.git \
     && git clone https://github.com/w0rp/ale.git \
     # Install outfit related plugins
     && mkdir -p /root/.vim/pack/looks/start \
@@ -86,9 +86,12 @@ RUN \
 RUN mkdir -p /root/ctags/proj /root/.config
 COPY configs/bashrc /root/.bashrc
 RUN \
-    cd /root/.vim/pack/syntax/start/coc.nvim \
-    && ./install.sh
+    mkdir -p /root/.vim/pack/syntax/start \
+    && cd /root/.vim/pack/syntax/start \
+    && curl --fail -L https://github.com/neoclide/coc.nvim/archive/release.tar.gz | tar xzfv -
 RUN \
     mkdir -p /root/.config/coc/extensions \
     && cd /root/.config/coc/extensions \
-    && yarn add coc-python coc-tsserver coc-json
+    && echo '{"dependencies":{}}'> package.json \
+    && npm install coc-python coc-tsserver coc-json coc-docker \
+       --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
