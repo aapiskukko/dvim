@@ -19,9 +19,6 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 " ########## VIM SETTINGS ##########
 
-" Go to folder whrere Docker Vim was started in host
-cd $CD_PATH
-
 " Create access to help
 silent! helptags ALL
 
@@ -146,6 +143,9 @@ augroup PythonCustomization
    :autocmd FileType python syn match pythonStatement "\(\W\|^\)\@<=self\([\.,)]\)\@="
 augroup END
 
+" Go to folder whrere Docker Vim was started in host
+cd $CD_PATH
+
 " ########## VIM KEY MAPPINGS ##########
 
 " Toggle line number relativity
@@ -214,9 +214,6 @@ autocmd FileAppendPre * :call TrimWhiteSpace()
 autocmd FilterWritePre * :call TrimWhiteSpace()
 autocmd BufWritePre * :call TrimWhiteSpace()
 autocmd InsertLeave * :call TrimWhiteSpace()
-
-" Easier way to save with ctrl+s
-noremap <C-s> :write<CR>
 
 " In insert mode, skip one character
 inoremap <S-Tab> <Right>
