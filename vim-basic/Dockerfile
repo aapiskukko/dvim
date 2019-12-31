@@ -16,8 +16,8 @@ RUN \
         lua-dev \
     # Download and install Vim
     && cd /tmp \
-    && git clone https://github.com/vim/vim.git --branch v8.1.2292 \
-    #&& git clone https://github.com/vim/vim.git \
+    ##&& git clone https://github.com/vim/vim.git --branch v8.1.2292 \
+    && git clone https://github.com/vim/vim.git \
     && cd /tmp/vim \
     && ./configure \
         --enable-pythoninterp \
