@@ -3,8 +3,7 @@
 NAME="dvim"
 PREFIX="/_"
 VIM_ARGS=""
-CD_PATH=$PREFIX$(readlink -f $PWD || greadlink -f $PWD)
-echo $CD_PATH
+CD_PATH=$PREFIX/$(readlink -f $PWD || greadlink -f $PWD)
 
 start_container()
 {
