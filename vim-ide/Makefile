@@ -18,7 +18,7 @@ install:
 	cp $(CONF_DIR)/coc-settings.json $(BASE_DIR)/coc-settings.json
 	cp $(CONF_DIR)/pylintrc $(BASE_DIR)/pylintrc
 	cp $(CONF_DIR)/pycodestyle $(BASE_DIR)/pycodestyle
-	xhost + local:
+	xhost + local: > /dev/null || true
 ifeq ($(OS),Darwin)
 ifeq (,$(findstring coreutils, $(shell brew list)))
 	brew install coreutils
