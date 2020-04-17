@@ -17,7 +17,6 @@ RUN \
         musl-dev \
         libffi-dev \
     && apk add --no-cache \
-        #py-pip \
         py3-pip \
         bash \
         curl \
@@ -31,7 +30,8 @@ RUN \
         pip \
         six \
         jedi==0.16.0 \
-        #yapf \
+        isort \
+        reorder-python-imports \
         pyls-black \
         pycodestyle \
         python-language-server \
