@@ -16,6 +16,7 @@ RUN \
         musl-dev \
     && apk add --no-cache \
         py-pip \
+        py3-pip \
         bash \
         curl \
         libxml2-utils \
@@ -35,7 +36,6 @@ RUN \
         pylint \
         requests \
         gevent \
-    # Install fzf
     && git clone https://github.com/junegunn/fzf.git /root/.fzf \
     && /root/.fzf/install \
     # Install universal-ctags
