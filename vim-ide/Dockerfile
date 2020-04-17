@@ -11,11 +11,13 @@ RUN \
         autoconf \
         build-base \
         pkgconfig \
+	python2 \
         python3-dev \
         gcc \
         musl-dev \
+        libffi-dev \
     && apk add --no-cache \
-        py-pip \
+        #py-pip \
         py3-pip \
         bash \
         curl \
@@ -28,8 +30,9 @@ RUN \
     && pip3 install --upgrade --no-cache-dir \
         pip \
         six \
-        jedi \
-        yapf \
+        jedi==0.16.0 \
+        #yapf \
+        pyls-black \
         pycodestyle \
         python-language-server \
         rope \
