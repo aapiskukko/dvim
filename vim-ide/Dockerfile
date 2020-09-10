@@ -29,7 +29,7 @@ RUN \
     && pip3 install --upgrade --no-cache-dir \
         pip \
         six \
-        jedi==0.16.0 \
+        jedi \
         isort \
         reorder-python-imports \
         pyls-black \

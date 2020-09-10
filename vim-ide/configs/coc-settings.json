@@ -4,5 +4,6 @@
     "diagnostic.infoSign": "❱❱",
     "diagnostic.hintSign": "❱❱",
     "suggest.floatEnable": false,
-    "diagnostic.displayByAle": true
+    "diagnostic.displayByAle": true,
+    "coc.preferences.extensionUpdateCheck": "never"
 }
