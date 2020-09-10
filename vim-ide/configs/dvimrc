@@ -258,9 +258,6 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:airline_section_z = '%{g:airline_symbols.linenr}%#__accent_bold#%5l%#__restore__#:%3v'
 let g:airline_section_y = ''
 
-" Ultisnips settings
-let g:UltiSnipsEditSplit="vertical"
-
 " Fuzzy search settings
 nnoremap gb <Esc>:Files<CR>
 nnoremap bg <Esc>:BTags<CR>

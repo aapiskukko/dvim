@@ -1,5 +1,4 @@
 FROM vim-basic:latest
-MAINTAINER Aatu Koivisto <aatukoivi@gmail.com>
 
 RUN \
     # Add edge repository
@@ -65,7 +64,6 @@ RUN \
     && cd /root/.vim/pack/util/start \
     && git clone https://github.com/junegunn/fzf.vim.git \
     && git clone https://github.com/scrooloose/nerdcommenter.git \
-    #&& git clone https://github.com/SirVer/ultisnips.git \
     && git clone https://github.com/tpope/vim-obsession.git \
     && git clone https://github.com/tpope/vim-surround.git \
     && git clone https://github.com/mjbrownie/swapit.git \
@@ -96,5 +94,5 @@ RUN \
     mkdir -p /root/.config/coc/extensions \
     && cd /root/.config/coc/extensions \
     && echo '{"dependencies":{}}'> package.json \
-    && npm install coc-python coc-tsserver coc-json coc-docker \
+    && npm install coc-python coc-tsserver coc-json coc-docker coc-snippets \
        --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod

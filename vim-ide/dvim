@@ -11,7 +11,7 @@ start_container()
     MOUNTS=""
     MOUNTS+="-v $HOME/.dvim/after:/root/.vim/after "
     MOUNTS+="-v $HOME/.dvim/ftplugin:/root/.vim/ftplugin "
-    MOUNTS+="-v $HOME/.dvim/UltiSnips:/root/.vim/UltiSnips "
+    MOUNTS+="-v $HOME/.dvim/ultisnips:/root/.config/coc/ultisnips "
     MOUNTS+="-v $HOME/.dvim/undo:/root/.vim/undo "
     MOUNTS+="-v $HOME/.dvim/coc-settings.json:/root/.vim/coc-settings.json "
     MOUNTS+="-v $HOME/.dvim/pylintrc:/etc/pylintrc "

@@ -4,6 +4,7 @@ UNDO_DIR=$(BASE_DIR)/undo
 FTPLUGIN_DIR=$(BASE_DIR)/ftplugin
 INST_DIR=/usr/local/bin
 CONF_DIR=$(PWD)/configs
+SNIPS_DIR=$(BASE_DIR)/ultisnips
 OS=$(shell uname)
 
 default: build
@@ -13,6 +14,7 @@ install:
 	mkdir -p $(BASE_DIR)
 	mkdir -p $(UNDO_DIR)
 	mkdir -p $(FTPLUGIN_DIR)
+	mkdir -p $(SNIPS_DIR)
 	sudo cp dvim* $(INST_DIR)
 	cp $(CONF_DIR)/dvimrc $(BASE_DIR)/dvimrc
 	cp $(CONF_DIR)/coc-settings.json $(BASE_DIR)/coc-settings.json
