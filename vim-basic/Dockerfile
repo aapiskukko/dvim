@@ -1,5 +1,4 @@
 FROM alpine:latest
-MAINTAINER Aatu Koivisto <aatukoivi@gmail.com>
 
 RUN \
     # Download and install required install deps
