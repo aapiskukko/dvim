@@ -7,3 +7,4 @@ cp $HOME/$BASE_DIR/coc-settings.json $CONF_DIR
 cp $HOME/$BASE_DIR/dvimrc $CONF_DIR
 cp $HOME/$BASE_DIR/pylintrc $CONF_DIR
 cp $HOME/$BASE_DIR/pycodestyle $CONF_DIR
+cp $HOME/$BASE_DIR/ultisnips/* $CONF_DIR/ultisnips
