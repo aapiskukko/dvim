@@ -20,6 +20,7 @@ install:
 	cp $(CONF_DIR)/coc-settings.json $(BASE_DIR)/coc-settings.json
 	cp $(CONF_DIR)/pylintrc $(BASE_DIR)/pylintrc
 	cp $(CONF_DIR)/pycodestyle $(BASE_DIR)/pycodestyle
+	cp -rf $(CONF_DIR)/ultisnips/* $(BASE_DIR)/ultisnips
 	xhost + local: > /dev/null || true
 ifeq ($(OS),Darwin)
 ifeq (,$(findstring coreutils, $(shell brew list)))
