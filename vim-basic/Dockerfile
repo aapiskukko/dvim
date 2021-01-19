@@ -4,9 +4,9 @@ RUN \
     # Download and install required install deps
     apk add --no-cache --update --virtual \
         build-deps \
+        python3-dev \
         build-base \
         git \
-        python-dev \
         ncurses-dev \
         libx11-dev \
         libxpm-dev \
