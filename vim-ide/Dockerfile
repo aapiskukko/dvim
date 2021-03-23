@@ -14,14 +14,11 @@ RUN \
         yarn \
         npm \
         the_silver_searcher \
-        libffi-dev \
         ctags \
     && pip install --upgrade --no-cache-dir \
         six \
         pyls-black \
         isort \
-        requests \
-        gevent \
     && git clone https://github.com/junegunn/fzf.git /root/.fzf \
     && /root/.fzf/install \
     # Install syntax related plugins
