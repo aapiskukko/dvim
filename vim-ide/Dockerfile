@@ -5,18 +5,8 @@ RUN \
     echo http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories \
     # Download and install required install deps
     && apk add --no-cache --update \
-        git \
-        automake \
-        autoconf \
         build-base \
-        pkgconfig \
-	python2 \
-        python3-dev \
-        gcc \
-        musl-dev \
-        libffi-dev \
-    && apk add --no-cache \
-        py3-pip \
+        git \
         bash \
         curl \
         libxml2-utils \
@@ -24,29 +14,16 @@ RUN \
         yarn \
         npm \
         the_silver_searcher \
-    && apk upgrade musl \
-    && pip3 install --upgrade --no-cache-dir \
-        pip \
+        libffi-dev \
+        ctags \
+    && pip install --upgrade --no-cache-dir \
         six \
-        jedi \
-        isort \
-        reorder-python-imports \
         pyls-black \
-        pycodestyle \
-        python-language-server \
-        rope \
-        pylint \
+        isort \
         requests \
         gevent \
     && git clone https://github.com/junegunn/fzf.git /root/.fzf \
     && /root/.fzf/install \
-    # Install universal-ctags
-    && cd /tmp \
-    && git clone https://github.com/universal-ctags/ctags.git \
-    && cd /tmp/ctags \
-    && ./autogen.sh \
-    && ./configure --prefix=/usr \
-    && make -j$(nproc) install \
     # Install syntax related plugins
     && mkdir -p /root/.vim/pack/syntax/start \
     && cd /root/.vim/pack/syntax/start \
@@ -70,16 +47,9 @@ RUN \
     && git clone https://github.com/vim-scripts/a.vim.git \
     # Remove build packages
     && apk del \
-        git \
         build-base \
-        autoconf \
-        automake \
-        pkgconfig \
-        gcc \
-        musl-dev \
     # Remove unused files
     && rm -rf \
-        /var/cache/apk/* \
         /var/log/* \
         var/tmp/* \
         /tmp/*
@@ -94,5 +64,5 @@ RUN \
     mkdir -p /root/.config/coc/extensions \
     && cd /root/.config/coc/extensions \
     && echo '{"dependencies":{}}'> package.json \
-    && npm install coc-python coc-tsserver coc-json coc-docker coc-snippets \
+    && npm install coc-pyright coc-tsserver coc-json coc-docker coc-snippets coc-cmake coc-git coc-sql coc-fzf-preview \
        --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
