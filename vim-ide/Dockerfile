@@ -15,6 +15,7 @@ RUN \
         npm \
         the_silver_searcher \
         ctags \
+        file \
     && pip install --upgrade --no-cache-dir \
         six \
         pyls-black \

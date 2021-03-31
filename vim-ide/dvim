@@ -17,6 +17,7 @@ start_container()
     MOUNTS+="-v $HOME/.dvim/pylintrc:/etc/pylintrc "
     MOUNTS+="-v $HOME/.dvim/pycodestyle:/root/.config/pycodestyle "
     MOUNTS+="-v $HOME/.dvim/dvimrc:/root/.vimrc "
+    MOUNTS+="-v $HOME/.dvim/python:/python "
     MOUNTS+="-v /:$PREFIX "
 
     if [ -z $VIM_IMG ]; then
@@ -34,6 +35,7 @@ start_container()
         --env DISPLAY                   \
     	--env COLUMNS=$(tput cols)	\
     	--env LINES=$(tput lines)   	\
+    	--env PYTHONPATH=/python   	\
         $MOUNTS                         \
         --env "CD_PATH=$PREFIX/$PWD"    \
         --net=host                      \

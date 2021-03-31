@@ -5,6 +5,7 @@ FTPLUGIN_DIR=$(BASE_DIR)/ftplugin
 INST_DIR=/usr/local/bin
 CONF_DIR=$(PWD)/configs
 SNIPS_DIR=$(BASE_DIR)/ultisnips
+PYTHON_DIR=$(BASE_DIR)/python
 OS=$(shell uname)
 
 default: build
@@ -15,6 +16,7 @@ install:
 	mkdir -p $(UNDO_DIR)
 	mkdir -p $(FTPLUGIN_DIR)
 	mkdir -p $(SNIPS_DIR)
+	mkdir -p $(PYTHON_DIR)
 	sudo cp dvim* $(INST_DIR)
 	cp $(CONF_DIR)/dvimrc $(BASE_DIR)/dvimrc
 	cp $(CONF_DIR)/coc-settings.json $(BASE_DIR)/coc-settings.json
