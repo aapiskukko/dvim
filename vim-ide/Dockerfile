@@ -16,7 +16,6 @@ RUN \
         the_silver_searcher \
         ctags \
         file \
-        ccls \
     && pip install --upgrade --no-cache-dir \
         six \
         pyls-black \
