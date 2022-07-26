@@ -20,6 +20,7 @@ RUN \
         six \
         pyls-black \
         isort \
+        pynvim \
     && git clone https://github.com/junegunn/fzf.git /root/.fzf \
     && /root/.fzf/install \
     # Install syntax related plugins

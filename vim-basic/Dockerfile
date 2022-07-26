@@ -18,7 +18,7 @@ RUN \
     && git clone https://github.com/vim/vim.git \
     && cd /tmp/vim \
     && ./configure \
-        --enable-pythoninterp \
+        --enable-python3interp \
         --enable-luainterp \
         --with-features=huge \
         --with-x \
