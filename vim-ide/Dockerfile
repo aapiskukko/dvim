@@ -16,6 +16,8 @@ RUN \
         the_silver_searcher \
         ctags \
         file \
+        clang \
+        clang-extra-tools \
         ccls \
     && pip install --upgrade --no-cache-dir \
         six \
@@ -46,8 +48,8 @@ RUN \
     && git clone https://github.com/mjbrownie/swapit.git \
     && git clone https://github.com/vim-scripts/a.vim.git \
     # Remove build packages
-    && apk del \
-        build-base \
+    #&& apk del \
+    #   build-base \
     # Remove unused files
     && rm -rf \
         /var/log/* \
@@ -64,5 +66,5 @@ RUN \
     mkdir -p /root/.config/coc/extensions \
     && cd /root/.config/coc/extensions \
     && echo '{"dependencies":{}}'> package.json \
-    && npm install coc-pyright coc-tsserver coc-json coc-docker coc-snippets coc-cmake coc-git coc-sql coc-fzf-preview \
+    && npm install coc-pyright coc-tsserver coc-json coc-docker coc-snippets coc-cmake coc-git coc-sql coc-fzf-preview coc-clangd \
        --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
