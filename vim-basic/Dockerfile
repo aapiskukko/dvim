@@ -1,4 +1,4 @@
-FROM python:3.9-alpine
+FROM python:3.10.5-alpine3.16
 
 RUN \
     # Download and install required install deps
