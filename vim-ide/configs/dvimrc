@@ -230,6 +230,7 @@ nnoremap N Nzz
 " ########## PLUGIN SETTINGS AND KEY BINDINGS ##########
 
 " ALE settings
+let g:ale_enabled = 0
 let g:ale_sign_column_always = 0
 let g:ale_sign_error = "❱❱"
 let g:ale_sign_warning = "❱❱"
@@ -241,8 +242,8 @@ let g:ale_cpp_clang_options = '-std=c++11 -Wall'
 let g:ale_python_pyls_use_global = 1
 let g:ale_fix_on_save = 1
 let g:ale_python_black_options = '--line-length 100'
-nmap <silent> <leader>k <Plug>(ale_previous_wrap)
-nmap <silent> <leader>j <Plug>(ale_next_wrap)
+"nmap <silent> <leader>k <Plug>(ale_previous_wrap)
+"nmap <silent> <leader>j <Plug>(ale_next_wrap)
 
 " Jellybeans theme settings
 set background=dark
@@ -292,3 +293,12 @@ let g:coc_snippet_next = '<c-j>'
 
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = '<c-k>'
+
+nmap <silent> <leader>k <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>j <Plug>(coc-diagnostic-next)
+
+hi link FgCocErrorFloatBgCocFloating Normal
+hi link FgCocWarningFloatBgCocFloating Normal
+hi link FgCocInformationFloatBgCocFloating Normal
+hi link FgCocNotificationFloatBgCocFloating Normal
+hi link FgCocHintFloatBgCocFloating Normal

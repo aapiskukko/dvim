@@ -4,6 +4,21 @@
     "diagnostic.infoSign": "❱❱",
     "diagnostic.hintSign": "❱❱",
     "suggest.floatEnable": false,
-    "diagnostic.displayByAle": true,
-    "coc.preferences.extensionUpdateCheck": "never"
+    "diagnostic.displayByAle": false,
+    "coc.preferences.extensionUpdateCheck": "never",
+    "languageserver": {
+        "ccls": {
+            "command": "ccls",
+            "filetypes": ["c", "cpp", "h", "hpp"],
+            "rootPatterns": ["compile_commands.json"],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/ccls-cache"
+                },
+                "client": {
+                    "snippetSupport": true
+                }
+            }
+        }
+    }
 }
