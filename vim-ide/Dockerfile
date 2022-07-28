@@ -30,7 +30,7 @@ RUN \
     && mkdir -p /root/.vim/pack/syntax/start \
     && cd /root/.vim/pack/syntax/start \
     && git clone https://github.com/andymass/vim-matchup.git \
-    && git clone https://github.com/w0rp/ale.git \
+    #&& git clone https://github.com/w0rp/ale.git \
     # Install outfit related plugins
     && mkdir -p /root/.vim/pack/looks/start \
     && cd /root/.vim/pack/looks/start \
@@ -66,5 +66,14 @@ RUN \
     mkdir -p /root/.config/coc/extensions \
     && cd /root/.config/coc/extensions \
     && echo '{"dependencies":{}}'> package.json \
-    && npm install coc-pyright coc-tsserver coc-json coc-docker coc-snippets coc-cmake coc-git coc-sql coc-fzf-preview coc-clangd \
-       --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
+    && npm install --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod \
+         coc-pyright \
+         coc-tsserver \
+         coc-json \
+         coc-docker \
+         coc-snippets \
+         coc-cmake \
+         coc-git \
+         coc-sql \
+         coc-fzf-preview \
+         coc-clangd

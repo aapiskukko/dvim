@@ -3,7 +3,7 @@
     "diagnostic.warningSign": "❱❱",
     "diagnostic.infoSign": "❱❱",
     "diagnostic.hintSign": "❱❱",
-    "suggest.floatEnable": false,
+    "suggest.floatEnable": true,
     "diagnostic.displayByAle": false,
     "coc.preferences.extensionUpdateCheck": "never",
     "languageserver": {
@@ -17,7 +17,13 @@
                 },
                 "client": {
                     "snippetSupport": true
-                }
+                },
+                "clang": {
+                    "extraArgs": [
+                        "-std=c++17"
+                    ]
+                },
+                "compilationDatabaseDirectory": "build"
             }
         }
     }
